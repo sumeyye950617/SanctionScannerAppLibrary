@@ -1,0 +1,49 @@
+﻿@model SanctionScannerAppLibrary.Models.Entities.Transaction
+
+@{
+    ViewBag.Title = "ReturnBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-10">
+    @using (Html.BeginForm("UpdateLendBook", "LendBook", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.HiddenFor(k => k.Id)
+                    <label>Kitap Adı</label>
+                    @Html.TextBoxFor(k => k.BookNoNavigation.Name, new { @class = "form-control", disabled = "disabled" })
+                </div>
+                <div class="form-group">
+                    <label>Alış tarihi</label>
+                    @Html.TextBoxFor(k => k.PurchaseDate, "{0: dd.MM.yyyy}", new { @class = "form-control", disabled = "disabled" })
+                </div>
+                <div class="form-group">
+                    <label>Kullanıcının İade Tarihi</label>
+                    <input type="text" class="form-control" name="UserReturnBook" value="@DateTime.Now.ToShortDateString()" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Kullanıcı</label>
+                    @Html.TextBoxFor(k => k.UserNoNavigation.FirstName, new { @class = "form-control", disabled = "disabled" })
+                </div>
+                <div class="form-group">
+                    <label>İade tarihi</label>
+                    @Html.TextBoxFor(k => k.ReturnDate, "{0: dd.MM.yyyy}", new { @class = "form-control", disabled = "disabled" })
+                </div>
+                <div class="form-group">
+                    <label>Geç Gelen Gün Sayısı</label>
+                    <input type="text" class="form-control" id="Gecinput" value="@ViewBag.dgr" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-group" style="background-color:#dc502e; color:white">Ödünç Kitabı Geri Al</button>
+                <input type="hidden" value="False" name="IsTransaction" />
+            </div>
+        </div>
+    }
+</div>

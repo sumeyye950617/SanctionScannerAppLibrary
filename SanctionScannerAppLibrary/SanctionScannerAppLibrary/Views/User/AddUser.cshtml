@@ -1,0 +1,74 @@
+﻿@model SanctionScannerAppLibrary.Models.Entities.User
+@{
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kullanıcı | Ekle</h2>
+
+<form class="form-group row" method="post">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div style="margin-top:15px" class="col-md-12">
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Kullanıcı Adı</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.FirstName, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Kullanıcı Soyadı</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.LastName, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Mail Adresi</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.Mail, new { @class = "form-control", placeholder = "E-posta Adresi" })
+                @Html.ValidationMessageFor(x => x.Mail, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Kullanıcı Adı</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.UserName, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Şifre</label>
+            <div class="col-sm-10">
+                @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Password, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Telefon</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.Phone, new { @class = "form-control", placeholder = "Telefon Numarası" })
+                @Html.ValidationMessageFor(x => x.Phone, "", new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Okul</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(x => x.School, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.School, "", new { @style = "color:red" })
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12" style="margin-top:15px">
+        <button class="btn btn-info" style="background-color:#dc502e; color:white" id="Btn1">Kullanıcı Ekle</button>
+    </div>
+</form>

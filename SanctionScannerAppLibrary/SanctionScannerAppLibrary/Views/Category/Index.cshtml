@@ -1,0 +1,28 @@
+﻿
+@model List<Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h3>Kategoriler</h3>
+
+<table class="table table-bordered">
+    <tr style="background-color:#909394">
+        <th>Kategori Id</th>
+        <th>Kategori Ad</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var category in Model)
+    {
+        <tr>
+            <td>@category.Id</td>
+            <td>@category.Name</td>
+            <td><a href="/Category/DeleteCategory/@category.Id" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Category/GetCategory/@category.Id" class="btn btn-warning">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a href="/Category/AddCategory/" style="background-color:#dc502e; color:white" class="btn btn-primary">Yeni Kategori Ekle</a>

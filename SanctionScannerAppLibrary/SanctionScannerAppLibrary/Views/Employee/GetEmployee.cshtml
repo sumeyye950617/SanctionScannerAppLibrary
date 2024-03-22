@@ -1,0 +1,29 @@
+﻿@model SanctionScannerAppLibrary.Models.Entities.Employee
+
+@{
+    ViewBag.Title = "GetEmployee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Personel| Güncelle</h2>
+
+@using (Html.BeginForm("UpdateEmployee", "Employee", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div style=" margin-bottom:15px"></div>
+    <div class="form-group row">
+        @Html.HiddenFor(k => k.Id)
+        <div class="col-sm-10">
+            <label class="col-sm-2 col-form-label font-weight-bold">Personel Adı (*)</label>
+            @Html.TextBoxFor(x => x.Employee1, new { @class = "form-control", required = "required", maxlength = "50" })
+            <div class="invalid-feedback">
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+        <button class="btn btn-warning">Güncelle</button>
+    </div>
+}
+

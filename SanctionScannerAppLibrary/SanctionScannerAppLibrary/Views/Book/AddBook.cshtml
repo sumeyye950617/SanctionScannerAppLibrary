@@ -1,0 +1,73 @@
+﻿@model SanctionScannerAppLibrary.Models.Entities.Book
+@{
+    ViewBag.Title = "AddBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Kitap | Ekle </h2>
+<form class="form-group" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div style="margin-top:15px">
+        <label>Kitap Adı(*)</label>
+        <div class="col-md-10">
+            <input asp-for="Name" class="form-control" required="required" maxlength="50" />
+            <span asp-validation-for="Name" style="color:red"></span>
+            <span class="text-danger">Kitap adını boş bırakmayın.</span>
+
+        </div>
+    </div>
+    <div style="margin-top:15px">
+        <label>Kitap Kategori(*)</label>
+        <div class="col-md-10">
+            <select asp-for="CategoryNo" asp-items="ViewBag.Category" class="form-control" required="required">
+                <option value="">Seçiniz</option>
+            </select>
+            <span asp-validation-for="CategoryNo" style="color:red"></span>
+        </div>
+    </div>
+    <div style="margin-top:15px">
+        <label>Kitap Yazar</label>
+        <div class="col-md-10">
+            <select asp-for="WriterNo" asp-items="ViewBag.Writer" class="form-control">
+                <option value="">Seçiniz</option>
+            </select>
+            <span asp-validation-for="WriterNo" style="color:red"></span>
+        </div>
+    </div>
+    <div style="margin-top:15px">
+        <label>Basım Yılı</label>
+        <div class="col-md-10">
+            <input asp-for="PublicationYear" class="form-control" min="0" max="3000" step="1" type="number" />
+            <span asp-validation-for="PublicationYear" style="color:red"></span>
+            <span class="text-danger">En fazla 4 basamaklı sayı girebilirsiniz.</span>
+
+        </div>
+    </div>
+    <div style="margin-top:15px">
+        <label>Yayınevi</label>
+        <div class="col-md-10">
+            <input asp-for="Publisher" class="form-control" maxlength="50" />
+            <span asp-validation-for="Publisher" style="color:red"></span>
+        </div>
+    </div>
+    <div style="margin-top:15px">
+        <label>Sayfa Sayısı</label>
+        <div class="col-md-10">
+            <input asp-for="Page" class="form-control" min="0" max="5000" step="1" type="number" />
+            <span asp-validation-for="Page" style="color:red"></span>
+        </div>
+    </div>
+    <div style="margin-top:15px">
+        <label>Kitap Resmi</label>
+        <div class="col-md-10">
+            <input type="file" name="file" class="form-control" />
+        </div>
+    </div>
+    <div style="margin-top:15px">
+        <button type="submit" class="btn btn-info" style="background-color:#dc502e; color:white">Kitap Ekle</button>
+    </div>
+    <input type="hidden" asp-for="IsActive" value="True" />
+</form>

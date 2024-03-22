@@ -1,0 +1,23 @@
+﻿@model List<Transaction>
+@{
+    ViewBag.Title = "UpdateBookHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>Kullanıcı: @ViewBag.u1</h3>
+
+<table class="table table-danger">
+    <tr style="background-color:#909394">
+        <th>Kitap Adı</th>
+        <th>Alış Tarihi</th>
+        <th>İade Tarihi</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.BookNoNavigation.Name</td>
+            <td>@Convert.ToDateTime(x.PurchaseDate).ToString("dd/MM/yyyy")</td>
+            <td>@Convert.ToDateTime(x.ReturnDate).ToString("dd/MM/yyyy")</td>
+        </tr>
+    }
+</table>
+

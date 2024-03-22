@@ -1,0 +1,41 @@
+﻿@using SanctionScannerAppLibrary.Models.Entities
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+
+@model IPagedList<User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>Kullanıcılar</h3>
+
+<table class="table table-striped">
+    <tr style="background-color:#909394">
+        <th>Kullanıcı Id</th>
+        <th>Kullanıcı Adı</th>
+        <th>Kullanıcı Soyadı</th>
+        <th>Kullanıcı Mail</th>
+        <th>Okul</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Kitap Geçmiş</th>
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.FirstName</td>
+            <td>@user.LastName</td>
+            <td>@user.Mail</td>
+            <td>@user.School</td>
+            <td><a href="/User/DeleteUser/@user.Id" class="btn btn-danger">Sil</a></td>
+            <td><a href="/User/GetUser/@user.Id" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="/User/UserBookHistory/@user.Id" class="btn btn-success" style="background-color:#343f52">Kitap Geçmişi</a></td>
+        </tr>
+    }
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+<a href="/User/AddUser/" class="btn btn-primary"style="background-color:#dc502e; color:white">Yeni Kullanıcı Ekle</a>

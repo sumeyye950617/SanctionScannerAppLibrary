@@ -1,0 +1,27 @@
+﻿
+@model List<Book>
+@{
+    ViewBag.Title = "WriterBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kitap Yazarı: @ViewBag.WriterName</h2>
+<br />
+<table class="table table-striped">
+    <tr style="background-color:#909394">
+        <th>ID</th>
+        <th>Kitap Adı</th>
+        <th>Kategori</th>
+        <th>Yayınevi</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Id</td>
+            <td>@x.Name</td>
+            <td>@x.CategoryNoNavigation.Name</td>
+            <td>@x.Publisher</td>
+        </tr>
+    }
+</table>
+

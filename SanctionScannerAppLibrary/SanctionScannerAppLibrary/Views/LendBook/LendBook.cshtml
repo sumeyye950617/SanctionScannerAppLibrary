@@ -1,0 +1,54 @@
+﻿@model SanctionScannerAppLibrary.Models.Entities.Transaction
+
+
+@{
+    ViewBag.Title = "LendBook";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ödünç Verme | Kitap</h2>
+<form method="post">
+    <input type="hidden" name="__RequestVerificationToken" value="@Html.AntiForgeryToken()" />
+
+    <div class="form-group">
+        <label for="UserNo">Kullanıcı İsim (*)</label>
+        <select id="UserNo" name="UserNo" class="form-control" required>
+            <option value="">Seçiniz</option>
+            @foreach (var user in ViewBag.UserList as IEnumerable<SelectListItem>)
+            {
+                <option value="@user.Value">@user.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="BookNo">Kitap Adı (*)</label>
+        <select id="BookNo" name="BookNo" class="form-control" required>
+            <option value="">Seçiniz</option>
+            @foreach (var book in ViewBag.BookList as IEnumerable<SelectListItem>)
+            {
+                <option value="@book.Value">@book.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="EmployeeNo">Personel Adı</label>
+        <select id="EmployeeNo" name="EmployeeNo" class="form-control">
+            <option value="">Seçiniz</option>
+            @foreach (var employee in ViewBag.EmployeeList as IEnumerable<SelectListItem>)
+            {
+                <option value="@employee.Value">@employee.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="ReturnDate">Kitap İade Tarihi (*)</label>
+        <input type="datetime-local" id="ReturnDate" name="ReturnDate" class="form-control" required />
+        <span class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-group" style="background-color:#dc502e; color:white">Kitabı Ödünç Ver</button>
+    <input type="hidden" name="IsTransaction" value="False" />
+</form>

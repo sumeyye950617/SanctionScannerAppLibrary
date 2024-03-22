@@ -1,0 +1,27 @@
+﻿@model List<Employee>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Personeller</h3>
+
+<table class="table table-striped" ">
+    <tr style="background-color:#909394">
+        <th>Personel Id</th>
+        <th>Personel Ad</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var employee in Model)
+    {
+        <tr>
+            <td>@employee.Id</td>
+            <td>@employee.Employee1</td>
+            <td><a href="/Employee/DeleteEmployee/@employee.Id" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Employee/GetEmployee/@employee.Id" class="btn btn-warning">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a href="/Employee/AddEmployee/" style="background-color:#dc502e; color:white" class="btn btn-primary">Yeni Personel Ekle</a>
+

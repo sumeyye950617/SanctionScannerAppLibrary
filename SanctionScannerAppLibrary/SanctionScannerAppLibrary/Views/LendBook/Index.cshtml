@@ -1,0 +1,32 @@
+﻿@model List<Transaction>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kitap Hareketleri</h2>
+
+<table class="table table-striped">
+    <tr style="background-color:#909394">
+        <th>İşlem ID</th>
+        <th>Kitap Adı</th>
+        <th>Kullanıcı</th>
+        <th>Personel</th>
+        <th>Alış Tarihi</th>
+        <th>İade Tarihi</th>
+        <th>İade Al</th>
+    </tr>
+    @foreach (var k in Model)
+    {
+            <tr>
+                <td>@k.Id</td>
+                <td>@k.BookNoNavigation.Name</td>
+                <td>@k.UserNoNavigation.FirstName&nbsp @k.UserNoNavigation.LastName</td>
+                <td>@k.EmployeeNoNavigation.Employee1</td>
+                <td>@Convert.ToDateTime(k.PurchaseDate).ToString("dd/MM/yyyy")</td>
+                <td>@Convert.ToDateTime(k.ReturnDate).ToString("dd/MM/yyyy")</td>
+            <td><a href="/LendBook/ReturnBook/@k.Id" class="btn btn-default" style="background-color:#dc502e; color:white">Kitabı İade Et</a></td>
+            </tr>
+    }
+</table>
+

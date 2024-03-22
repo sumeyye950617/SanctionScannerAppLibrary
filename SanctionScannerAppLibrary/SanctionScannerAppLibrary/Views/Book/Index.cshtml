@@ -1,0 +1,73 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Book>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h3> Kitap Sayfası</h3>
+
+    @using (Html.BeginForm("Index", "Book", FormMethod.Get))
+    {
+        <div style="margin-bottom:15px; margin-top:15px;">
+            <b style="font-size: 16px;">Kitap Adını Giriniz: &nbsp;</b>
+            @Html.TextBox("b", null, new { @class = "search-box", placeholder = "Bir kitap arayın..." })
+            <input type="submit" value="Ara" class="search-button" />
+        </div>
+    }
+
+    <table class="table table-striped">
+        <tr style="background-color:#909394">
+            <th>ID</th>
+            <th>Kitap Resmi</th>
+            <th>Kitap Adı</th>
+            <th>Kitap Yazarı</th>
+            <th>Kategorisi</th>
+            <th>Basım Yılı</th>
+            <th>Yayınevi</th>
+            <th>Sayfa</th>
+            <th>Mevcut Mu?</th>
+            <th>Sil</th>
+            <th>Kitap Hareketi</th>
+
+        </tr>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Id</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(book.Picture))
+                    {
+                        <img src="/resimler/@book.Picture" style="max-height:75px" />
+                    }
+                    else
+                    {
+                        <img src="/resimler/custom.png" style="max-height:75px" />
+                    }
+                </td>
+                <td>@book.Name</td>
+                <td>@book.WriterNoNavigation.FirstName&nbsp @book.WriterNoNavigation.LastName</td>
+                <td>@book.CategoryNoNavigation.Name</td>
+                <td>@book.PublicationYear</td>
+                <td>@book.Publisher</td>
+                <td>@book.Page</td>
+                <td>
+                    @if (book.IsActive != null && book.IsActive == true)
+                    {
+                        <span>Mevcut</span>
+                    }
+                    else
+                    {
+                        <span>Mevcut Değil</span>
+                    }
+                </td>
+                <td><a href="/Book/DeleteBook/@book.Id" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Book/GetTransaction/@book.Id" class="btn btn-warning">Kitap Hareketi</a></td>
+            </tr>
+        }
+    </table>
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+    <a href="/Book/AddBook" style="background-color:#dc502e;  color:white" class="btn btn-primary">Yeni Kitap Ekle</a>

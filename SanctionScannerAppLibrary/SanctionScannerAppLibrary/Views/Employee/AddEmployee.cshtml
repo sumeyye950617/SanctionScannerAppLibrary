@@ -1,0 +1,21 @@
+﻿@model SanctionScannerAppLibrary.Models.Entities.Employee
+@{
+    ViewBag.Title = "AddEmployee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h2>  Personel | Ekle</h2>
+<br />
+<form method="post">
+    <input type="hidden" name="__RequestVerificationToken" value="@Html.AntiForgeryToken()" />
+    <div class="form-group row">
+        <label for="Employee1" class="col-sm-2 col-form-label font-weight-bold">Personel Adı (*)</label>
+        <div class="col-sm-10">
+            <input type="text" id="Employee1" name="Employee1" class="form-control" maxlength="50" required />
+            <span class="text-danger"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success" style="background-color:#dc502e; color:white">Personel Ekle</button>
+</form>

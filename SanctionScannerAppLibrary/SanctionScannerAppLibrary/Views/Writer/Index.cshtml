@@ -1,0 +1,31 @@
+﻿@model List<Writer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Yazarlar</h3>
+
+<table class="table table-striped">
+    <tr style="background-color:#909394">
+        <th>Id</th>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Yazarın Kitapları</th>
+    </tr>
+    @foreach (var w in Model)
+    {
+            <tr>
+                <td>@w.Id</td>
+                <td>@w.FirstName</td>
+                <td>@w.LastName</td>
+                <td>@Html.ActionLink("Sil", "DeleteWriter", new { id = w.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor Musunuz?')" })</td>
+                <td><a href="/Writer/GetWriter/@w.Id" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="/Writer/WriterBook/@w.Id" class="btn btn-default" style="background-color:#dc502e">Yazarın Kitapları</a></td>
+            </tr>
+    }
+</table>
+<a class="btn btn-primary" style="background-color:#dc502e" href="/Writer/AddWriter/">Yeni Yazar Ekle</a>
+
