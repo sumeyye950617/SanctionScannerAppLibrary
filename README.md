@@ -1,5 +1,5 @@
 # SanctionScannerAppLibrary
- ## We made a Library application using Net Core, Mvc, EF Core, HTML5, CSS, JQUERY
+ ## We made a Library application using Net Core, MVC, EF Core, HTML5, CSS, JQUERY
  <p> In this application we used the Ef Core DB first approach. For this we installed some packages. These packages are:
 
   <ul>
